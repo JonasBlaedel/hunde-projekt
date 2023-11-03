@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export async function generateMetadata() {
   const res = await fetch("https://nice-dogs.vercel.app/api/dogs?slug=henry");
   const data = await res.json();
@@ -16,7 +18,17 @@ export default async function Henry() {
     <main>
       <h1>{name}</h1>
       <p>{favouriteColor}</p>
-      <img src={image.url} alt="" />
+      <Image
+        className="w-auto h-auto"
+        src={image.url}
+        alt="henry dog"
+        width={image.width}
+        height={image.height}
+        priority={true}
+        sizes="(max-width: 768px) 100vw,
+         (max-width: 1200px) 50vw,
+         50rem"
+      ></Image>
     </main>
   );
 }
