@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-export async function generateMetadata() {
-  const res = await fetch("https://nice-dogs.vercel.app/api/dogs?slug=henry");
+export async function generateMetadata({ params }) {
+  const res = await fetch("https://nice-dogs.vercel.app/api/dogs?slug=" + params.slug);
   const data = await res.json();
   return {
     title: data.name,
